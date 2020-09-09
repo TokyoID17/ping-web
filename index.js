@@ -6,9 +6,11 @@ const prefix = "!";
 
 client.on("message", async message => {
 
-let args = message.content.slice(prefix.length).trim().split(/ +/g);
-let msg = message.content.toLowerCase();
-let cmd = args.shift().toLowerCase();
+  if(message.author.bot) return;
+  if(!message.content.startsWith(prefix)) return;
+	
+  const args = message.content.slice(prefix.length).trim().split(/ +/g);
+  const cmd = args.shift().toLowerCase();
 
 if(cmd === "ping"){
 	if(!args[0]) return message.channel.send(`Enter The Ip Please!`)
